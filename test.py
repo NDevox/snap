@@ -73,5 +73,41 @@ class TestSnapGame(unittest.TestCase):
         self.assertEqual(True, snap.compare_suit_and_value(card1, card4))
         self.assertEqual(False, snap.compare_suit_and_value(card1, card5))
 
+
+    def test_end_on_deck(self):
+        """
+        Make sure that by the end of the game the deck has been depleted.
+        """
+
+        ###########################small deck################################
+
+        deck = snap.set_up_game(1)  # single deck
+
+        snap.run_game(deck, snap.compare_suit)
+
+        self.assertEqual(len(deck), 0)
+
+        ###########################large deck################################
+
+        deck = snap.set_up_game(100)
+
+        snap.run_game(deck, snap.compare_suit)
+
+        self.assertEqual(len(deck), 0)
+
+        ###########################all rules#################################
+
+        deck = snap.set_up_game(1)
+
+        snap.run_game(deck, snap.compare_value)
+
+        self.assertEqual(len(deck), 0)
+
+        deck = snap.set_up_game(1)
+
+        snap.run_game(deck, snap.compare_suit_and_value)
+
+        self.assertEqual(len(deck), 0)
+
 if __name__ == '__main__':
     unittest.main()
