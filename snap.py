@@ -4,6 +4,7 @@ import sys
 
 if sys.version_info.major < 3:  # A bit or py2/3 compatibility
     input = raw_input
+    range = xrange
 
 
 class Card(object):
